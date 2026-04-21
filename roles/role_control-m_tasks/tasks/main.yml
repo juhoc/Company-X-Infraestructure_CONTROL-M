@@ -1,9 +1,9 @@
-- name: prueba 1 unzip media CTM9WIN
-  win_shell: Expand-Archive -Path ".\Control-M_v9.x_Win.zip" -DestinationPath "."
-  args:
-    chdir: C:\ucd
+#- name: prueba 1 unzip media CTM9WIN
+#  win_shell: Expand-Archive -Path ".\Control-M_v9.x_Win.zip" -DestinationPath "."
+#  args:
+#    chdir: C:\ucd
 
 - name: prueba 2 instalar mesia CTM9WIN
-  win_shell: Start-Process -FilePath .\install_ctm_agt9x.ps1 -ArgumentList '-Environment Dev' -Wait
+  win_shell: .\install_ctm_agt9x.ps1 -Environment Dev'
   args:
     chdir: C:\ucd\Control-M_v9.x_Win\scripts
