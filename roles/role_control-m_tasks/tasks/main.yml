@@ -1,0 +1,4 @@
+- name: prueba instalacion CTM9
+  win_shell: Expand-Archive -Path ".\Control-M_v9.x_Win.zip" -DestinationPath "."
+  args:
+    chdir: C:\ucd
