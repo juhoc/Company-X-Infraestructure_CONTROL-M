@@ -4,6 +4,6 @@
 #    chdir: C:\ucd
 
 - name: prueba 2 instalar mesia CTM9WIN
-  win_shell: .\\install_ctm_agt9x.ps1 -Environment Dev'
+  win_shell: .\install_ctm_agt9x.ps1 -Environment Dev
   args:
     chdir: C:\ucd\Control-M_v9.x_Win\scripts
