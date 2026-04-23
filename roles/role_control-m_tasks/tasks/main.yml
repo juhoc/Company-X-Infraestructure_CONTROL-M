@@ -1,9 +1,49 @@
-- name: prueba 1 unzip media CTM9WIN
+- name: Crear directorio vacio para media Control-M_v9.x_Win
+  win_file:
+    path: D:\ansible\divididos
+    state: directory
+
+- name: Copiar media  del Repo a equipo local
+  win_copy:
+    src: files/{{ item }}
+    dest: D:\ansible\divididos\
+  loop:
+    - Control-M_v9.x_Win_001.zip
+    - Control-M_v9.x_Win_002.zip
+    - Control-M_v9.x_Win_003.zip
+    - Control-M_v9.x_Win_004.zip
+    - Control-M_v9.x_Win_005.zip
+    - Control-M_v9.x_Win_006.zip
+    - Control-M_v9.x_Win_007.zip
+    - Control-M_v9.x_Win_008.zip
+    - Control-M_v9.x_Win_009.zip
+    - Control-M_v9.x_Win_010.zip
+    - Control-M_v9.x_Win_011.zip
+    - Control-M_v9.x_Win_012.zip
+    - Control-M_v9.x_Win_013.zip
+
+- name: Ensamblar archivos divididos de Control-M_v9.x_Win.zip
+  win_shell: |
+    $carpetaPartes = "D:\ansible\divididos"
+    $archivoSalida = "D:\ansible\Control-M_v9.x_Win.zip"
+    $partes = Get-ChildItem -Path $carpetaPartes -Filter "Control-M_v9.x_Win_*.zip" | Sort-Object Name
+    $outputStream = [System.IO.File]::Create($archivoSalida)
+    
+    foreach ($parte in $partes) {
+        Write-Host "Procesando: $($parte.Name)"
+        $bytes = [System.IO.File]::ReadAllBytes($parte.FullName)
+        $outputStream.Write($bytes, 0, $bytes.Length)
+    }
+    
+    $outputStream.Close()
+    Write-Host "Archivo reconstruido: $archivoSalida"
+
+- name: Desempaquetar Control-M_v9.x_Win.zip
   win_shell: Expand-Archive -Path ".\Control-M_v9.x_Win.zip" -DestinationPath "."
   args:
-    chdir: C:\ucd
+    chdir: D:\ansible\divididos
 
-- name: prueba 2 instalar mesia CTM9WIN
+- name: Instalar media Control-M_v9.x_Win.zip
   win_shell: .\install_ctm_agt9x.ps1 -Environment Dev
   args:
-    chdir: C:\ucd\Control-M_v9.x_Win\scripts
+    chdir: D:\ansible\divididos\Control-M_v9.x_Win\scripts
