@@ -1,0 +1,16 @@
+---
+- name: Buscar media soft3ros
+    find:
+     paths: "{{ pathsoft }}"
+     patterns: "{{ mediasoft }}"
+     recurse: true
+     become: true
+    register: findmedia
+
+
+# - name: Copiar Agetente TSCL del Managed Node al Control Machine
+#   fetch:
+#     src: /tmp/tsco_agent.tar
+#     dest: /tmp/tsco_agent.tar
+#     flat: true
+#   run_once: true
