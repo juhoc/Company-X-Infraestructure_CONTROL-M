@@ -10,7 +10,7 @@
 #      acc_id: "{{ account_triname }}"
 #      transaction_id: "{{ tower_job_id }}"
 
-- name: Ansible PlayBook - Instalacion Qualys Linux
+- name: Ansible PlayBook - Tareas generales
   hosts: all
   gather_facts: false
 
