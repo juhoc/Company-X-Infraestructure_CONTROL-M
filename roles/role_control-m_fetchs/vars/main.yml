@@ -1,0 +1,16 @@
+#---Vars Server
+job_template_id: "107"
+nombre_servidor: "{{ hostvars[inventory_hostname].ansible_hostname }}"
+direccion_ip: "{{ hostvars[inventory_hostname].ipaddress }}"
+entorno: "{{ hostvars[inventory_hostname]['entorno'] }}"
+#---variables de api
+tower_base_url: "http://172.19.0.4:8052"
+tower_token: "T3qIBMvwZMS9321AL39Dlm66HeB3iX"
+retries: 100
+delay: 2
+#---variables de sistema operativo
+#---
+accionjtp1:
+  tarea: "Tranferir_media"
+  demora: 2
+  reintentos: 10

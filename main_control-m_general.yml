@@ -18,10 +18,10 @@
     - name: Seleccion de fact
       set_fact:
         run_role: |
-          {% if role == 'Contro_M_Tasks' %}
-          ['role_control-m_fetchs']
-          {% elif role == 'Contro_M_Fetchs' %}
+          {% if role == 'Contro_M_Fetchs' %}
           ['role_control-m_tasks']
+          {% elif role == 'Contro_M_Tasks' %}
+          ['role_control-m_fetchs']
           {% else %}
           ['No_selecciono_ninguna_role']
           {% endif %}

@@ -1,0 +1,24 @@
+---
+- set_fact:
+    run_playbook: |
+      {% if tarea == 'Transferencia_media' %}
+      ['fetch/call_api_fetch']
+      {% else %}
+      ['No_selecciono_ninguna_tarea']
+      {% endif %}
+
+- name: Resultado de la seleccion
+  become: true
+  assert:
+    that:
+      - "'No_selecciono_ninguna_tarea' not in run_playbook"
+    fail_msg: "run_playbook"
+    success_msg: "Ha seleccionado: {{ run_playbook | replace('\n', '') }}"
+  run_once: true
+  delegate_to: localhost
+
+- name: Inicia tareas {{ run_playbook }}
+  include_tasks: "{{ tareas }}.yml"
+  loop: "{{ run_playbook }}"
+  loop_control:
+    loop_var: tareas
