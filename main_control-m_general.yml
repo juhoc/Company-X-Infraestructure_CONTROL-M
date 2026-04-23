@@ -14,6 +14,27 @@
   hosts: all
   gather_facts: false
   
-  tasks:
-    - include_role:
-        name: role_control-m_tasks
+- set_fact:
+    run_role: |
+      {% if role == 'Contro_M_Tasks' %}
+      ['role_control-m_fetchs']
+      {% elif role == 'Contro_M_Fetchs' %}
+      ['role_control-m_tasks']
+      {% else %}
+      ['No_selecciono_ninguna_tarea']
+      {% endif %}
+
+- name: Resultado de la seleccion del role
+  assert:
+    that:
+      - "'No_selecciono_ninguna_role' not in run_playbook"
+    fail_msg: "run_role"
+    success_msg: "Ha seleccionado: {{ run_playbook | replace('\n', '') }}"
+  run_once: true
+  delegate_to: localhost
+
+- name: Inicia tareas {{ run_playbook }}
+  include_tasks: "{{ roles }}"
+  loop: "{{ run_role }}"
+  loop_control:
+    loop_var: roles
