@@ -2,7 +2,9 @@
 - set_fact:
     run_playbook: |
       {% if tarea == 'Transferir_media' %}
-      ['fetch/fetch']
+      ['fetch/fetch_task']
+      {% if tarea == 'Transferir_media' %}
+      ['fetch/fetch_task']
       {% else %}
       ['No_selecciono_ninguna_tarea']
       {% endif %}
