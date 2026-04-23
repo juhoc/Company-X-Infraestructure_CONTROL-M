@@ -29,13 +29,13 @@
     - name: Resultado de la seleccion del role
       assert:
         that:
-          - "'No_selecciono_ninguna_role' not in run_playbook"
+          - "'No_selecciono_ninguna_role' not in run_role"
         fail_msg: "run_role"
-        success_msg: "Ha seleccionado: {{ run_playbook | replace('\n', '') }}"
+        success_msg: "Ha seleccionado: {{ run_role | replace('\n', '') }}"
       run_once: true
       delegate_to: localhost
 
-    - name: Inicia tareas {{ run_playbook }}
+    - name: Inicia tareas {{ run_role }}
       include_tasks: "{{ roles }}"
       loop: "{{ run_role }}"
       loop_control:
