@@ -15,16 +15,20 @@
   gather_facts: false
 
 - tasks:
-    - name: Seleccion de fact
-      set_fact:
-        run_role: |
-          {% if role == 'Contro_M_Tasks' %}
-          ['role_control-m_fetchs']
-          {% elif role == 'Contro_M_Fetchs' %}
-          ['role_control-m_tasks']
-          {% else %}
-          ['No_selecciono_ninguna_tarea']
-          {% endif %}
+    - name: prueba
+      win_shell: dir
+
+# - tasks:
+#     - name: Seleccion de fact
+#       set_fact:
+#         run_role: |
+#           {% if role == 'Contro_M_Tasks' %}
+#           ['role_control-m_fetchs']
+#           {% elif role == 'Contro_M_Fetchs' %}
+#           ['role_control-m_tasks']
+#           {% else %}
+#           ['No_selecciono_ninguna_tarea']
+#           {% endif %}
 
     # - name: Resultado de la seleccion del role
     #   assert:
