@@ -23,7 +23,7 @@
           {% elif role == 'Contro_M_Fetchs' %}
           ['role_control-m_tasks']
           {% else %}
-          ['No_selecciono_ninguna_tarea']
+          ['No_selecciono_ninguna_role']
           {% endif %}
 
     - name: Resultado de la seleccion del role
