@@ -28,7 +28,7 @@
   assert:
     that:
       - "'No_selecciono_ninguna_role' not in run_playbook"
-    fail_msg: "run_playbook"
+    fail_msg: "run_role"
     success_msg: "Ha seleccionado: {{ run_playbook | replace('\n', '') }}"
   run_once: true
   delegate_to: localhost
